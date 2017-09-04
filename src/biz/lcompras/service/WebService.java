@@ -102,7 +102,7 @@ public class WebService {
 		String prd_id  = queryParams.getFirst("prd_id");
 		if(sub_id == null || sub_id.equals("")) {
 			logger.error("MissingParameters: sub_id");						
-			msg.setKey("MissingParameters");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Parametros requeridos no fueron recibidos: sub_id"};
 			msg.setDsc(dsc);
 			msg.setLevel("info");			
@@ -114,7 +114,7 @@ public class WebService {
 		}
 		if(tid == null || tid.equals("")) {
 			logger.error("MissingParameters: tid");						
-			msg.setKey("MissingParameters");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Parametros requeridos no fueron recibidos: tid"};
 			msg.setDsc(dsc);
 			msg.setLevel("info");			
@@ -126,7 +126,7 @@ public class WebService {
 		}
 		if(prd_id == null || prd_id.equals("")) {
 			logger.error("MissingParameters: prd_id");						
-			msg.setKey("MissingParameters");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Parametros requeridos no fueron recibidos: prd_id"};
 			msg.setDsc(dsc);
 			msg.setLevel("info");			
@@ -161,7 +161,7 @@ public class WebService {
 			if (json == null) {
 				
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: parametros nulos"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -174,7 +174,7 @@ public class WebService {
 			o = new JSONObject(json);
 			if(!o.has("tid")) {
 				logger.error("MissingParameters: tid");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: tid"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -186,7 +186,7 @@ public class WebService {
 			}
 			if(!o.has("amt")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: amt"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -198,7 +198,7 @@ public class WebService {
 			}
 			if(!o.has("prd_id")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: prd_id"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -210,7 +210,7 @@ public class WebService {
 			}
 			if(!o.has("curr")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: curr"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -222,7 +222,7 @@ public class WebService {
 			}
 			if(!o.has("inv_id")) {
 				logger.error("MissingParameters: inv_id");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: inv_id"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -234,7 +234,7 @@ public class WebService {
 			}
 			if(!o.has("trn_dat")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: trn_dat"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -246,7 +246,7 @@ public class WebService {
 			}
 			if(!o.has("trn_hou")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: trn_hou"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -258,7 +258,7 @@ public class WebService {
 			}
 			if(!o.has("cm_amt")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: cm_amt"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -270,7 +270,7 @@ public class WebService {
 			}
 			if(!o.has("cm_curr")) {
 				logger.error("MissingParameters: no existe parametros");						
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos: cm_curr"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -299,7 +299,11 @@ public class WebService {
 			p.setCurr(o.getString("curr"));
 			p.setTrn_dat(o.getString("trn_dat"));
 			p.setTrn_hou(Integer.toString(o.getInt("trn_hou")));
-			if(!o.has("type")) {
+
+			// if(!o.has("type")) {
+			// cambiado por roger el 2017.9.3a
+			
+			if(o.has("type")) {
 				p.setType(o.getString("type"));
 			}
 			else {
@@ -336,7 +340,7 @@ public class WebService {
 		} catch (JSONException e) {
 			e.printStackTrace();
 			logger.error("Error JSON");						
-			msg.setKey("Error JSON");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Error en json"};
 			msg.setDsc(dsc);
 			msg.setLevel("error");			
@@ -370,7 +374,7 @@ public class WebService {
 		Message msg = new Message();
 		if (json == null) {			
 			logger.error("MissingParameters: no existe parametros");
-			msg.setKey("MissingParameters");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Parametros requeridos no fueron recibidos"};
 			msg.setDsc(dsc);
 			msg.setLevel("info");			
@@ -388,7 +392,7 @@ public class WebService {
 				tid = Integer.toString(o.getInt("tid"));
 			} else {				
 				logger.error("MissingParameters: no existe parametros tid");
-				msg.setKey("MissingParameters");
+				msg.setKey("MissingParameter");
 				String[] dsc = {"Parametros requeridos no fueron recibidos"};
 				msg.setDsc(dsc);
 				msg.setLevel("info");			
@@ -500,7 +504,7 @@ public class WebService {
 		} catch (JSONException e) {
 			e.printStackTrace();			
 			logger.error("MissingParameters: no existe parametros" + json);
-			msg.setKey("MissingParameters");
+			msg.setKey("MissingParameter");
 			String[] dsc = {"Parametros requeridos no fueron recibidos"};
 			msg.setDsc(dsc);
 			msg.setLevel("error");			

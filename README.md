@@ -6,3 +6,4 @@ mysql
 apache tomcat 8.5
 
 todas las librerias se encuentran dentro de WEB-INF/Lib no es necesario colocar eljava-json.jar en el tomcat
+dejo optativo el parametro type en payment
